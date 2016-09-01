@@ -182,3 +182,24 @@ public class FloatingActionMenuBehavior extends android.support.design.widget.Co
     }
 
 }
+
+
+
+
+
+
+
+
+
+private void updateFabTranslationForSnackbar(FloatingActionsMenu child, View dependency) {
+        float translationY = Math.min(0, ViewCompat.getTranslationY(dependency) - dependency.getHeight());
+        ViewCompat.setTranslationY(child, translationY);
+    }
+and this needs to be added:
+
+  @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, FloatingActionsMenu child, View dependency) {
+        final boolean b = dependency instanceof Snackbar.SnackbarLayout;
+        return b;
+    }
+
